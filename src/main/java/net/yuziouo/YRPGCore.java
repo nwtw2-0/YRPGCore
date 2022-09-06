@@ -1,6 +1,7 @@
 package net.yuziouo;
 
 import cn.nukkit.plugin.PluginBase;
+import net.yuziouo.GradeSystem.GradeListener;
 import net.yuziouo.RPGSystem.RPGPlayer;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public class YRPGCore extends PluginBase {
         database.initDatabase();
         database.initTable();
         RPGPlayers = new HashMap<>();
+        getServer().getPluginManager().registerEvents(new GradeListener(),this);
     }
 
     @Override
