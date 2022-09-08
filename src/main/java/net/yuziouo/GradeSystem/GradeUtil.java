@@ -55,4 +55,24 @@ public class GradeUtil {
             grade.setLv(grade.getLv()+lv);
         }
     }
+
+    /**
+     *
+     * @param player 需要設定經驗值得玩家
+     * @param exp 需要設定的經驗
+     */
+    public static void setExp(Player player,int exp){
+        Grade grade = YRPGCore.getRPGPlayers().get(player.getName()).getGrade();
+        grade.setExp(exp);
+    }
+
+    /**
+     *
+     * @param player 需要設定等級的玩家
+     * @param lv 設定等級數量
+     */
+    public static void setLevel(Player player,int lv){
+        Grade grade = YRPGCore.getRPGPlayers().get(player.getName()).getGrade();
+        grade.setLv(lv);
+    }
 }

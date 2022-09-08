@@ -7,10 +7,10 @@ import cn.nukkit.utils.TextFormat;
 import net.yuziouo.GradeSystem.GradeUtil;
 import net.yuziouo.SubCommand;
 
-public class AddExpCommand extends SubCommand {
-    public AddExpCommand(){
-        this.name = "addExp";
-        this.description = "增加玩家經驗值";
+public class SetLevelCommand extends SubCommand {
+    public SetLevelCommand(){
+        this.name = "setLv";
+        this.description = "設定玩家等級";
     }
     @Override
     public void execute(CommandSender commandSender, String s, String[] strings) {
@@ -19,9 +19,9 @@ public class AddExpCommand extends SubCommand {
             if(Server.getInstance().getPlayer(name)!= null) {
                 Player player = Server.getInstance().getPlayer(name);
                 try {
-                    int exp = Integer.parseInt(strings[2]);
-                    GradeUtil.addExp(player,exp,false);
-                    player.sendMessage("你已經獲取到經驗+"+exp);
+                    int lv = Integer.parseInt(strings[2]);
+                    GradeUtil.setLevel(player,lv);
+                    player.sendMessage("你的等級已經被設定為"+lv);
                 } catch (Exception e) {
                     commandSender.sendMessage(TextFormat.RED + "請勿把經驗量設置為非數字");
                 }
