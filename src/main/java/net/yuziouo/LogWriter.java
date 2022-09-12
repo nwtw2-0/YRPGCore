@@ -1,9 +1,6 @@
 package net.yuziouo;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -25,8 +22,10 @@ public class LogWriter {
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            writer.write(getTime()+" "+str);
-            writer.flush();
+            PrintWriter pw = new PrintWriter(writer);
+            pw.println(getTime()+" "+str);
+            pw.flush();
+            pw.close();
             writer.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
