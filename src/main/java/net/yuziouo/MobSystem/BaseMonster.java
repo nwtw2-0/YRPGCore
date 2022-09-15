@@ -8,7 +8,6 @@ import cn.nukkit.entity.ai.controller.LookController;
 import cn.nukkit.entity.ai.controller.WalkController;
 import cn.nukkit.entity.ai.evaluator.AllMatchEvaluator;
 import cn.nukkit.entity.ai.evaluator.MemoryCheckNotEmptyEvaluator;
-import cn.nukkit.entity.ai.executor.MeleeAttackExecutor;
 import cn.nukkit.entity.ai.executor.RandomRoamExecutor;
 import cn.nukkit.entity.ai.memory.AttackTargetMemory;
 import cn.nukkit.entity.ai.memory.NearestPlayerMemory;
@@ -30,8 +29,13 @@ public class BaseMonster extends EntityWalkingMob {
     private IBehaviorGroup behaviorGroup;
     private final HashMap<Player,Double> damageList = new HashMap<>();
 
-    public BaseMonster(FullChunk chunk, CompoundTag nbt) {
+    public BaseMonster(FullChunk chunk, CompoundTag nbt,MonsterAbility ability) {
         super(chunk, nbt);
+        this.ability = ability;
+        this.setMaxHealth(ability.health());
+        this.setHealth(getMaxHealth());
+        this.setNameTagAlwaysVisible(true);
+        this.setNameTag("Lv."+ability.grade()+" "+ability.name());
     }
 
     @Override

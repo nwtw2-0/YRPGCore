@@ -1,17 +1,28 @@
 package net.yuziouo;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LogWriter {
     //日誌文件
-    private final File file;
+    private final Path file;
     public LogWriter(){
-        file = new File(YRPGCore.getInstance().getDataFolder()+"/logs",getDate()+".txt");
-        if (!file.exists()) {
+        if (!Files.exists(YRPGCore.getInstance().getDataFolder().toPath())){
             try {
-                file.createNewFile();
+                Files.createDirectory(YRPGCore.getInstance().getDataFolder().toPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        file = YRPGCore.getInstance().getDataFolder().toPath().resolve("log.txt");
+        if (!Files.exists(file)) {
+            try {
+                Files.createFile(file);
+                YRPGCore.getInstance().getLogger().info("尚未找到Log紀錄檔案 正在創建一份");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -21,12 +32,7 @@ public class LogWriter {
     public void writeData(String str){
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            PrintWriter pw = new PrintWriter(writer);
-            pw.println(getTime()+" "+str);
-            pw.flush();
-            pw.close();
-            writer.close();
+           Files.write(file,(getTime()+"  "+str+"\n").getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

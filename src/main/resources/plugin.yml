@@ -1,13 +1,5 @@
 name: YRPGCore
-version: 1.0
+version: 1.0.0
 author: yuziouo
 api: [1.0.8]
 main: net.yuziouo.YRPGCore
-commands:
-  grade:
-    description: 等級指令
-    usage: /grade [addExp|setExp|addLevel|setLevel] 玩家名稱 數量
-    permission: YRPGCore.Grade.setcmd
-permissions:
-  YRPGCore.Grade.setcmd:
-    default: op

@@ -22,7 +22,7 @@ public class GradeUtil {
      * @param pass 是否觸發PlayerAddExpEvent事件
      */
     public static void addExp(Player player,int exp,boolean pass){
-        Grade grade = YRPGCore.getRPGPlayers().get(player.getName()).getGrade();
+        Grade grade = YRPGCore.getRPGPlayers().get(player).getGrade();
         if (pass){
             PlayerAddExpEvent event = new PlayerAddExpEvent(player,exp);
             Server.getInstance().getPluginManager().callEvent(event);
@@ -45,7 +45,7 @@ public class GradeUtil {
      * @param pass 是否觸發PlayerAddLevelEvent事件
      */
     public static void addLevel(Player player,int lv,boolean pass){
-        Grade grade = YRPGCore.getRPGPlayers().get(player.getName()).getGrade();
+        Grade grade = YRPGCore.getRPGPlayers().get(player).getGrade();
         if (pass){
             PlayerAddLevelEvent event = new PlayerAddLevelEvent(player,lv);
             Server.getInstance().getPluginManager().callEvent(event);
@@ -62,7 +62,7 @@ public class GradeUtil {
      * @param exp 需要設定的經驗
      */
     public static void setExp(Player player,int exp){
-        Grade grade = YRPGCore.getRPGPlayers().get(player.getName()).getGrade();
+        Grade grade = YRPGCore.getRPGPlayers().get(player).getGrade();
         grade.setExp(exp);
     }
 
@@ -72,7 +72,7 @@ public class GradeUtil {
      * @param lv 設定等級數量
      */
     public static void setLevel(Player player,int lv){
-        Grade grade = YRPGCore.getRPGPlayers().get(player.getName()).getGrade();
+        Grade grade = YRPGCore.getRPGPlayers().get(player).getGrade();
         grade.setLv(lv);
     }
 }

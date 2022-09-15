@@ -8,7 +8,7 @@ public class GradeListener implements Listener {
     @EventHandler
     public void PlayerAddExpEvent(PlayerAddExpEvent event){
         var player = event.getPlayer();
-        var grade = YRPGCore.getRPGPlayers().get(player.getName()).getGrade();
+        var grade = YRPGCore.getRPGPlayers().get(player).getGrade();
         YRPGCore.getInstance().getLogWriter().writeData(player.getName()+"獲的了 "+event.getExp()+" 點經驗值");
         if(grade.canLevelUp()){
             GradeUtil.addLevel(player,1,false);

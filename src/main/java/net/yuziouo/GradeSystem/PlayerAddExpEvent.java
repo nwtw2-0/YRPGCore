@@ -2,10 +2,10 @@ package net.yuziouo.GradeSystem;
 
 import cn.nukkit.Player;
 import cn.nukkit.event.Cancellable;
-import cn.nukkit.event.Event;
 import cn.nukkit.event.HandlerList;
+import cn.nukkit.event.player.PlayerEvent;
 
-public class PlayerAddExpEvent extends Event implements Cancellable {
+public class PlayerAddExpEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private boolean isCancelled;
     private int exp;
@@ -34,7 +34,7 @@ public class PlayerAddExpEvent extends Event implements Cancellable {
         isCancelled = cancelled;
     }
 
-    public static HandlerList getHandlersList() {
+    public static HandlerList getHandlers() {
         return HANDLERS_LIST;
     }
 
