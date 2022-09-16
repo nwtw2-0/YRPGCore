@@ -6,6 +6,7 @@ import net.yuziouo.GradeSystem.GradeListener;
 import net.yuziouo.RPGSystem.RPGPlayer;
 import net.yuziouo.StorageSystem.Storage;
 import net.yuziouo.TownSystem.Town;
+import net.yuziouo.TownSystem.TownListener;
 
 import java.util.HashMap;
 
@@ -27,6 +28,7 @@ public class YRPGCore extends PluginBase {
         initStorageMap();
         getServer().getPluginManager().registerEvents(new GradeListener(),this);
         getServer().getPluginManager().registerEvents(new RegisterPlayerListener(),this);
+        getServer().getPluginManager().registerEvents(new TownListener(),this);
         logWriter.writeData("插件啟動");
         Town.load();
     }
