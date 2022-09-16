@@ -20,6 +20,7 @@ public class TownListener implements Listener {
                 double dz = event.getTo().z - event.getFrom().z;
                 event.getPlayer().addMotion(dx,0,dz);
                 event.getPlayer().sendAnnouncement(TextFormat.RED+"你還未完成前置任務無法進入此區域");
+                return;
             }
         }
     }
