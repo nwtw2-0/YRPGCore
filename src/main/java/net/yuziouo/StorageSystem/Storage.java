@@ -1,41 +1,38 @@
 package net.yuziouo.StorageSystem;
 
-import net.yuziouo.YRPGCore;
+import cn.nukkit.utils.Config;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.Map;
 
-public abstract class Storage implements IStorage{
-    protected Path path;
-    private static final ArrayList<Storage> storages = new ArrayList<>();
-    public Storage(Path path){
-        this.path = path;
-        if(!Files.exists(this.path)){
+public class Storage {
+    private Config config;
+
+    public Storage(Path file) {
+        if (!Files.exists(file)){
             try {
-                Files.createDirectory(this.path);
+                Files.createFile(file);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-        registerStorge(this);
-        YRPGCore.getInstance().getLogWriter().writeData(getName()+"儲存器已經註冊");
+        this.config = new Config(file.toFile(),Config.YAML);
     }
 
-    public Path getPath() {
-        return path;
+    public void setConfig(Config config) {
+        this.config = config;
+    }
+    public void set(String name,StorageType type,IYAMLStorage storage){
+        config.set(name+"."+type.getName(),storage.toMap());
+        config.save();
+    }
+    public Map<String,Object> get(String name,StorageType type){
+       return (Map<String, Object>) config.getSection(name).get(type.getName());
     }
 
-    public void setPath(Path path) {
-        this.path = path;
+    public Config getConfig() {
+        return config;
     }
-
-    public static ArrayList<Storage> getStorages() {
-        return storages;
-    }
-    public void registerStorge(Storage storage){
-        storages.add(storage);
-    }
-    abstract String getName();
 }

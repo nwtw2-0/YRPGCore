@@ -1,6 +1,11 @@
 package net.yuziouo.GradeSystem;
 
-public class Grade {
+import net.yuziouo.StorageSystem.IYAMLStorage;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Grade implements IYAMLStorage {
     private int lv;
     private int exp;
     /**
@@ -49,5 +54,20 @@ public class Grade {
      */
     public void setLv(int lv) {
         this.lv = lv;
+    }
+
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String,Object> map = new HashMap<>();
+        map.put("Lv",lv);
+        map.put("exp",exp);
+        return map;
+    }
+
+    public static Grade toClass(Map<String, Object> map) {
+        Grade grade = new Grade();
+        grade.setExp((int)map.get("exp"));
+        grade.setLv((int)map.get("Lv"));
+        return grade;
     }
 }
