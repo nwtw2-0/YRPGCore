@@ -2,6 +2,7 @@ package net.yuziouo;
 
 import cn.nukkit.Player;
 import cn.nukkit.plugin.PluginBase;
+import net.yuziouo.GradeSystem.GradeCommand;
 import net.yuziouo.GradeSystem.GradeListener;
 import net.yuziouo.RPGSystem.RPGPlayer;
 import net.yuziouo.StorageSystem.Storage;
@@ -26,6 +27,7 @@ public class YRPGCore extends PluginBase {
         super.onEnable();
         RPGPlayers = new HashMap<>();
         initStorageMap();
+        getServer().getCommandMap().register("",new GradeCommand("grade","等級指令","grade"));
         getServer().getPluginManager().registerEvents(new GradeListener(),this);
         getServer().getPluginManager().registerEvents(new RegisterPlayerListener(),this);
         getServer().getPluginManager().registerEvents(new TownListener(),this);
