@@ -11,6 +11,7 @@ import net.yuziouo.GradeSystem.Commands.SetLevelCommand;
 import net.yuziouo.SubCommand;
 import net.yuziouo.YRPGCore;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class GradeCommand extends Command {
@@ -49,7 +50,11 @@ public class GradeCommand extends Command {
         if (strings.length >0){
             if(subCommands.containsKey(strings[0])){
                 subCommands.get(strings[0]).execute(commandSender,s,strings);
-                YRPGCore.getInstance().getLogWriter().writeData(commandSender.getName()+"執行了指令 /"+s);
+                StringBuilder builder = new StringBuilder();
+                Arrays.stream(strings).forEach(string ->{
+                    builder.append(string).append(" ");
+                });
+                YRPGCore.getInstance().getLogWriter().writeData(commandSender.getName()+"執行了指令 /"+s+" "+builder);
             }else {
                 commandSender.sendMessage("沒有找到此指令");
             }

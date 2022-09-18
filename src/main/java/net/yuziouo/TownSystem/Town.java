@@ -15,6 +15,7 @@ public class Town implements IYAMLStorage {
     private String level;
     private Vector3 positionA;
     private Vector3 positionB;
+    private Vector3 tpLocation;
     private String name;
     private ArrayList<String> canPass = new ArrayList<>();
     private boolean pass;
@@ -69,12 +70,21 @@ public class Town implements IYAMLStorage {
         return pass;
     }
 
+    public Vector3 getTpLocation() {
+        return tpLocation;
+    }
+
+    public void setTpLocation(Vector3 tpLocation) {
+        this.tpLocation = tpLocation;
+    }
+
     @Override
     public Map<String, Object> toMap() {
         HashMap<String,Object> map = new HashMap<>();
         map.put("name",name);
         map.put("start",positionA.getFloorX()+":"+positionA.getFloorY()+":"+positionA.getFloorZ());
         map.put("end",positionB.getFloorX()+":"+positionB.getFloorY()+":"+positionB.getFloorZ());
+        map.put("tp",tpLocation.getFloorX()+":"+tpLocation.getFloorY()+":"+tpLocation.getFloorZ());
         map.put("level",level);
         map.put("canPass",canPass);
         map.put("pass",pass);
@@ -87,6 +97,8 @@ public class Town implements IYAMLStorage {
         town.setPositionA(new Vector3(Integer.parseInt(start[0]),Integer.parseInt(start[1]),Integer.parseInt(start[2])));
         String[] end = ((String) map.get("end")).split(":");
         town.setPositionB(new Vector3(Integer.parseInt(end[0]),Integer.parseInt(end[1]),Integer.parseInt(end[2])));
+        String[] tp = ((String) map.get("tp")).split(":");
+        town.setTpLocation(new Vector3(Integer.parseInt(tp[0]),Integer.parseInt(tp[1]),Integer.parseInt(tp[2])));
         town.setLevel((String) map.get("level"));
         town.setCanPass((ArrayList<String>) map.get("canPass"));
         town.setPass((boolean)map.get("pass"));
