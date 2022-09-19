@@ -1,6 +1,9 @@
 package net.yuziouo.TownSystem;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.form.element.ElementButton;
+import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.math.Vector3;
 import net.yuziouo.StorageSystem.IYAMLStorage;
 import net.yuziouo.StorageSystem.StorageType;
@@ -110,10 +113,20 @@ public class Town implements IYAMLStorage {
     }
     public static void load(){
         for(String key:YRPGCore.getTownStorage().getConfig().getKeys(false)){
-            towns.add(Town.toClass(YRPGCore.getTownStorage().get(key,StorageType.town)));
+            Town town = Town.toClass(YRPGCore.getTownStorage().get(key,StorageType.town));
+            if (!Server.getInstance().isLevelLoaded(town.getLevel())){
+                Server.getInstance().loadLevel(town.getLevel());
+                YRPGCore.getInstance().getLogger().info(town.getLevel()+"地圖已經讀取完畢");
+            }
+            towns.add(town);
             YRPGCore.getInstance().getLogWriter().writeData("城市:"+key+"讀取成功!");
         }
         YRPGCore.getInstance().getLogWriter().writeData("城市讀取完成!");
         YRPGCore.getInstance().getLogger().info("城市讀取完成");
+    }
+    public static void CanTeleportTown(Player player){
+        FormWindowSimple simple = new FormWindowSimple("傳送系統","");
+        towns.stream().filter(town -> town.getCanPass().contains(player.getName())).findAny()
+                .ifPresent(town -> simple.addButton(new ElementButton(town.getName())));
     }
 }

@@ -47,20 +47,7 @@ public class GradeCommand extends Command {
     @Override
     public boolean execute(CommandSender commandSender, String s, String[] strings) {
         if (!testPermission(commandSender)) return false;
-        if (strings.length >0){
-            if(subCommands.containsKey(strings[0])){
-                subCommands.get(strings[0]).execute(commandSender,s,strings);
-                StringBuilder builder = new StringBuilder();
-                Arrays.stream(strings).forEach(string ->{
-                    builder.append(string).append(" ");
-                });
-                YRPGCore.getInstance().getLogWriter().writeData(commandSender.getName()+"執行了指令 /"+s+" "+builder);
-            }else {
-                commandSender.sendMessage("沒有找到此指令");
-            }
-        }else {
-            commandSender.sendMessage("請輸入/grade help來找尋更多");
-        }
+        SubCommand.runSubCommand(strings,subCommands,commandSender,s);
         return true;
     }
     public void registerSubCommand(){
