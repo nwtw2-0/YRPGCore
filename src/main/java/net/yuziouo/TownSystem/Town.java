@@ -129,4 +129,10 @@ public class Town implements IYAMLStorage {
         towns.stream().filter(town -> town.getCanPass().contains(player.getName())).findAny()
                 .ifPresent(town -> simple.addButton(new ElementButton(town.getName())));
     }
+    public static boolean notHasName(String name){
+        for (Town town : towns){
+            if (town.getName().equals(name)) return false;
+        }
+        return true;
+    }
 }

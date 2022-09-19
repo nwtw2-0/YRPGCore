@@ -7,11 +7,23 @@
     <groupId>net.yuziouo</groupId>
     <artifactId>YRPGCore</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <repositories>
+        <repository>
+            <id>nukkitx-repo</id>
+            <url>https://repo.nukkitx.com/main/</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>cn.powernukkitx</groupId>
             <artifactId>powernukkitx</artifactId>
             <version>1.19.21-r4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.creeperface.nukkit.placeholderapi</groupId>
+            <artifactId>PlaceholderAPI</artifactId>
+            <version>1.4-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

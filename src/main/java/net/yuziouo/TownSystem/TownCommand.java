@@ -3,6 +3,8 @@ package net.yuziouo.TownSystem;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import net.yuziouo.SubCommand;
+import net.yuziouo.TownSystem.Commands.CreateCommand;
+
 import java.util.HashMap;
 
 public class TownCommand extends Command {
@@ -11,6 +13,7 @@ public class TownCommand extends Command {
         super(name);
         this.setPermission("yrpgcore.town.admin");
         subCommands = new HashMap<>();
+        registerCommands();
     }
 
     @Override
@@ -18,5 +21,8 @@ public class TownCommand extends Command {
         if (!testPermission(commandSender)) return false;
         SubCommand.runSubCommand(strings,subCommands,commandSender,s);
         return true;
+    }
+    public void registerCommands(){
+        subCommands.put("create",new CreateCommand());
     }
 }

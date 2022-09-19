@@ -7,6 +7,7 @@ import net.yuziouo.GradeSystem.GradeListener;
 import net.yuziouo.RPGSystem.RPGPlayer;
 import net.yuziouo.StorageSystem.Storage;
 import net.yuziouo.TownSystem.Town;
+import net.yuziouo.TownSystem.TownCommand;
 import net.yuziouo.TownSystem.TownListener;
 
 import java.util.HashMap;
@@ -22,12 +23,17 @@ public class YRPGCore extends PluginBase {
     }
     @Override
     public void onEnable() {
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null){
+            getLogger().error("請先安裝前置插件 PlaceholderAPI");
+            getPluginLoader().disablePlugin(this);
+        }
         logWriter = new LogWriter();
         storageHashMap = new HashMap<>();
         super.onEnable();
         RPGPlayers = new HashMap<>();
         initStorageMap();
         getServer().getCommandMap().register("",new GradeCommand("grade","等級指令","grade"));
+        getServer().getCommandMap().register("town",new TownCommand("town"));
         getServer().getPluginManager().registerEvents(new GradeListener(),this);
         getServer().getPluginManager().registerEvents(new RegisterPlayerListener(),this);
         getServer().getPluginManager().registerEvents(new TownListener(),this);

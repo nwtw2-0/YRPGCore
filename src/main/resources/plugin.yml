@@ -3,3 +3,5 @@ version: 1.0.0
 author: yuziouo
 api: [1.0.8]
 main: net.yuziouo.YRPGCore
+depend:
+  - PlaceholderAPI
