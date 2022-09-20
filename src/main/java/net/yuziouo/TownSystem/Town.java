@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Town implements IYAMLStorage {
+    public static final int tpFormID = 12;
     public static ArrayList<Town> towns = new ArrayList<>();
     private String level;
     private Vector3 positionA;
@@ -128,11 +129,15 @@ public class Town implements IYAMLStorage {
         FormWindowSimple simple = new FormWindowSimple("傳送系統","");
         towns.stream().filter(town -> town.getCanPass().contains(player.getName())).findAny()
                 .ifPresent(town -> simple.addButton(new ElementButton(town.getName())));
+        player.showFormWindow(simple,tpFormID);
     }
     public static boolean notHasName(String name){
         for (Town town : towns){
             if (town.getName().equals(name)) return false;
         }
         return true;
+    }
+    public static Town getTown(String name){
+        return towns.stream().filter(town -> town.getName().equals(name)).findFirst().orElse(null);
     }
 }

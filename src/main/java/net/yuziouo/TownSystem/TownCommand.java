@@ -4,6 +4,7 @@ import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import net.yuziouo.SubCommand;
 import net.yuziouo.TownSystem.Commands.CreateCommand;
+import net.yuziouo.TownSystem.Commands.TpListCommand;
 
 import java.util.HashMap;
 
@@ -24,5 +25,6 @@ public class TownCommand extends Command {
     }
     public void registerCommands(){
         subCommands.put("create",new CreateCommand());
+        subCommands.put("tplist",new TpListCommand());
     }
 }

@@ -2,6 +2,8 @@ package net.yuziouo;
 
 import cn.nukkit.Player;
 import cn.nukkit.plugin.PluginBase;
+import cn.nukkit.plugin.service.RegisteredServiceProvider;
+import com.nukkitx.fakeinventories.inventory.FakeInventories;
 import net.yuziouo.GradeSystem.GradeCommand;
 import net.yuziouo.GradeSystem.GradeListener;
 import net.yuziouo.RPGSystem.RPGPlayer;
@@ -26,6 +28,12 @@ public class YRPGCore extends PluginBase {
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null){
             getLogger().error("請先安裝前置插件 PlaceholderAPI");
             getPluginLoader().disablePlugin(this);
+        }
+        RegisteredServiceProvider<FakeInventories> provider = getServer().getServiceManager().getProvider(FakeInventories.class);
+
+        if (provider == null || provider.getProvider() == null) {
+            getLogger().error("請先安裝前置插件 FakeInventories");
+            this.getServer().getPluginManager().disablePlugin(this);
         }
         logWriter = new LogWriter();
         storageHashMap = new HashMap<>();
