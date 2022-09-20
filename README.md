@@ -46,10 +46,10 @@ RPG核心
 
 積分版:
 
-支持PlaceHolderAPI變量
+- 支持PlaceHolderAPI變量
 
 聊天系統:
 
-支持PlaceHolderAPI變量
+- 支持PlaceHolderAPI變量
 
-屏蔽系統
+- 屏蔽系統
