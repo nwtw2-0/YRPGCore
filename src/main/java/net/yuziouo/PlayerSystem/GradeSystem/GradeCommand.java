@@ -1,17 +1,15 @@
-package net.yuziouo.GradeSystem;
+package net.yuziouo.PlayerSystem.GradeSystem;
 
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParamType;
 import cn.nukkit.command.data.CommandParameter;
-import net.yuziouo.GradeSystem.Commands.AddExpCommand;
-import net.yuziouo.GradeSystem.Commands.AddGradeCommand;
-import net.yuziouo.GradeSystem.Commands.SetExpCommand;
-import net.yuziouo.GradeSystem.Commands.SetLevelCommand;
+import net.yuziouo.PlayerSystem.GradeSystem.Commands.AddExpCommand;
+import net.yuziouo.PlayerSystem.GradeSystem.Commands.AddGradeCommand;
+import net.yuziouo.PlayerSystem.GradeSystem.Commands.SetExpCommand;
+import net.yuziouo.PlayerSystem.GradeSystem.Commands.SetLevelCommand;
 import net.yuziouo.SubCommand;
-import net.yuziouo.YRPGCore;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class GradeCommand extends Command {

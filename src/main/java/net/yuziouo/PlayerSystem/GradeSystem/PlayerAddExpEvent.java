@@ -1,35 +1,27 @@
-package net.yuziouo.GradeSystem;
+package net.yuziouo.PlayerSystem.GradeSystem;
 
 import cn.nukkit.Player;
 import cn.nukkit.event.Cancellable;
 import cn.nukkit.event.HandlerList;
 import cn.nukkit.event.player.PlayerEvent;
 
-public class PlayerAddLevelEvent extends PlayerEvent implements Cancellable {
+public class PlayerAddExpEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private boolean isCancelled;
+    private int exp;
     private final Player player;
-    private int level;
 
-    public PlayerAddLevelEvent(Player player, int level) {
+    public PlayerAddExpEvent(Player player,int exp) {
+        this.exp = exp;
         this.player = player;
-        this.level = level;
     }
 
-    public Player getPlayer() {
-        return player;
+    public int getExp() {
+        return exp;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public static HandlerList getHandlers() {
-        return HANDLERS_LIST;
+    public void setExp(int exp) {
+        this.exp = exp;
     }
 
     @Override
@@ -40,5 +32,13 @@ public class PlayerAddLevelEvent extends PlayerEvent implements Cancellable {
     @Override
     public void setCancelled(boolean cancelled) {
         isCancelled = cancelled;
+    }
+
+    public static HandlerList getHandlers() {
+        return HANDLERS_LIST;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

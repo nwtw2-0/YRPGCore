@@ -1,4 +1,4 @@
-package net.yuziouo.GradeSystem;
+package net.yuziouo.PlayerSystem.GradeSystem;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;

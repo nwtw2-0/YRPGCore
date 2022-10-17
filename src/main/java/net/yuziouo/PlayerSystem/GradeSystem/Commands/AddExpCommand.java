@@ -1,10 +1,10 @@
-package net.yuziouo.GradeSystem.Commands;
+package net.yuziouo.PlayerSystem.GradeSystem.Commands;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.TextFormat;
-import net.yuziouo.GradeSystem.GradeUtil;
+import net.yuziouo.PlayerSystem.GradeSystem.GradeUtil;
 import net.yuziouo.SubCommand;
 
 public class AddExpCommand extends SubCommand {

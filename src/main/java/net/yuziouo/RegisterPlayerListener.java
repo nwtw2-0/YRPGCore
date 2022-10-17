@@ -6,8 +6,8 @@ import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
-import net.yuziouo.GradeSystem.Grade;
-import net.yuziouo.RPGSystem.RPGPlayer;
+import net.yuziouo.PlayerSystem.GradeSystem.Grade;
+import net.yuziouo.PlayerSystem.RPGPlayer;
 import net.yuziouo.StorageSystem.StorageType;
 
 public class RegisterPlayerListener implements Listener {
@@ -17,7 +17,7 @@ public class RegisterPlayerListener implements Listener {
     }
 
     private void registerPlayer(Player player) {
-        YRPGCore.getRPGPlayers().put(player, new RPGPlayer());
+        YRPGCore.getRPGPlayers().put(player, new RPGPlayer(0));
         YRPGCore.getRPGPlayers().get(player).setGrade(Grade.toClass(YRPGCore.getInstance().getPlayerStorage().get(player.getName(), StorageType.grade)));
         YRPGCore.getInstance().getLogWriter().writeData(player.getName() + "的資料讀取成功!");
     }

@@ -6,5 +6,12 @@
         <language minSize="93" name="Java" />
       </Languages>
     </inspection_tool>
+    <inspection_tool class="MavenPackageUpdate" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="excludeList">
+        <list>
+          <option value="cn.powernukkitx:powernukkitx" />
+        </list>
+      </option>
+    </inspection_tool>
   </profile>
 </component>

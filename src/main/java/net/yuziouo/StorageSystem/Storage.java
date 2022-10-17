@@ -1,7 +1,7 @@
 package net.yuziouo.StorageSystem;
 
 import cn.nukkit.utils.Config;
-import net.yuziouo.GradeSystem.Grade;
+import net.yuziouo.PlayerSystem.GradeSystem.Grade;
 import net.yuziouo.YRPGCore;
 
 import java.io.IOException;

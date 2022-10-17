@@ -1,4 +1,4 @@
-package net.yuziouo.GradeSystem;
+package net.yuziouo.PlayerSystem.GradeSystem;
 
 import net.yuziouo.StorageSystem.IYAMLStorage;
 

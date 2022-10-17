@@ -1,16 +1,16 @@
-package net.yuziouo.GradeSystem.Commands;
+package net.yuziouo.PlayerSystem.GradeSystem.Commands;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.TextFormat;
-import net.yuziouo.GradeSystem.GradeUtil;
+import net.yuziouo.PlayerSystem.GradeSystem.GradeUtil;
 import net.yuziouo.SubCommand;
 
-public class SetLevelCommand extends SubCommand {
-    public SetLevelCommand(){
-        this.name = "setLv";
-        this.description = "設定玩家等級";
+public class AddGradeCommand extends SubCommand {
+    public AddGradeCommand(){
+        this.name = "addLv";
+        this.description = "增加玩家等級";
     }
     @Override
     public void execute(CommandSender commandSender, String s, String[] strings) {
@@ -19,11 +19,11 @@ public class SetLevelCommand extends SubCommand {
             if(Server.getInstance().getPlayer(name)!= null) {
                 Player player = Server.getInstance().getPlayer(name);
                 try {
-                    int lv = Integer.parseInt(strings[2]);
-                    GradeUtil.setLevel(player,lv);
-                    player.sendMessage("你的等級已經被設定為"+lv);
+                    int grade = Integer.parseInt(strings[2]);
+                    GradeUtil.addLevel(player,grade,false);
+                    player.sendMessage("你的等級已經增加了+"+grade);
                 } catch (Exception e) {
-                    commandSender.sendMessage(TextFormat.RED + "請勿把經驗量設置為非數字");
+                    commandSender.sendMessage(TextFormat.RED + "請勿把等級量設置為非數字");
                 }
             }
         }
